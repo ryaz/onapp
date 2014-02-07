@@ -1,7 +1,7 @@
 class Response < ActiveRecord::Base
   belongs_to :ticket
 
-  validate :text, presence: true
+  validates :text, presence: true
 
   before_save :set_owner
   after_create :notify_customer

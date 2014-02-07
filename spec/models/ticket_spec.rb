@@ -16,5 +16,11 @@
 require 'spec_helper'
 
 describe Ticket do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:user) }
+  it { should have_many(:responses).dependent(:destroy) }
+  it { should accept_nested_attributes_for :responses }
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:subject)}
+  it { should validate_presence_of(:body) }
 end

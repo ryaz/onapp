@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Response do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:ticket) }
+  it { should validate_presence_of(:text) }
 end
