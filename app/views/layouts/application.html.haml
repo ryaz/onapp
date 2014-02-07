@@ -25,23 +25,31 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") Onapp
+          %a.brand(href="/") Onapp
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              - if signed_in?
+                %li= link_to "New Ticket", new_customer_ticket_path
+                %li= link_to "Tickets", tickets_path
+                %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+              - else
+                %li= link_to "Sign In", new_user_session_path
+            = form_tag tickets_path, class: "form-inline", method: :get do
+              = text_field_tag :query, params[:query], class: "form-control"
+              = submit_tag "Search", class: "btn btn-primary"
 
     .container-fluid
 
       .row-fluid
         .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+          - if signed_in?
+            .well.sidebar-nav
+              %ul.nav.nav-list
+                %li.nav-header Tickets
+                = nav_link "New unassigned", Ticket::WAIT_STAFF
+                = nav_link "Open", Ticket::WAIT_CUSTOMER
+                = nav_link "On hold", Ticket::HOLD
+                = nav_link "Closed", 'closed'
         .span9
           = bootstrap_flash
           = yield

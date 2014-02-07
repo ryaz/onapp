@@ -32,6 +32,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'searchkick'
+gem 'public_activity'
+gem 'randexp'
 gem "twitter-bootstrap-rails"
 gem 'devise'
 gem 'haml-rails'

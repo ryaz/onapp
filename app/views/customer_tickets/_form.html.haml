@@ -1,8 +1,4 @@
-= form_for @ticket, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
-    = f.label :status, :class => 'control-label'
-    .controls
-      = f.select :status, Ticket::STATUSES
+= form_for @ticket, url: customer_tickets_path, :html => { :class => 'form-horizontal' } do |f|
   .control-group
     = f.label :name, :class => 'control-label'
     .controls
@@ -19,10 +15,5 @@
     = f.label :body, :class => 'control-label'
     .controls
       = f.text_field :body, :class => 'text_field'
-  .control-group
-    = f.label :uid, :class => 'control-label'
-    .controls
-      = f.text_field :uid, :class => 'text_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), tickets_path, :class => 'btn'
