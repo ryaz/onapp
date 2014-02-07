@@ -1,11 +1,11 @@
 class UserMailer < ActionMailer::Base
-  default from: 'notifications@onapp.com'
+  default from: 'notifications@onapp.herokuapp.com'
 
   def ticket(ticket, subject, status, reply = nil)
     @ticket = ticket
     @status = status
     @reply = reply
-    @url  = 'http://lvh.me:3006'
+    @url  = 'http://http://onapp.herokuapp.com/'
     mail(to: @ticket.email, subject: subject)
   end
 end

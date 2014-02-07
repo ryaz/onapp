@@ -32,11 +32,12 @@
                 %li= link_to "New Ticket", new_customer_ticket_path
                 %li= link_to "Tickets", tickets_path
                 %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+                = form_tag tickets_path, class: "form-inline", method: :get do
+                  = text_field_tag :query, params[:query], class: "form-control"
+                  = submit_tag "Search", class: "btn btn-primary"
               - else
                 %li= link_to "Sign In", new_user_session_path
-            = form_tag tickets_path, class: "form-inline", method: :get do
-              = text_field_tag :query, params[:query], class: "form-control"
-              = submit_tag "Search", class: "btn btn-primary"
+
 
     .container-fluid
 
