@@ -37,7 +37,8 @@ class Ticket < ActiveRecord::Base
 
   accepts_nested_attributes_for :responses, allow_destroy: true, reject_if: proc { |attrs| attrs['text'].blank? }
 
-  before_save :set_status, :set_uid, on: create
+  before_create :set_status, :set_uid
+  after_update :notify_customer
 
   with_options presence: true do |this|
     this.validates :name, length: {maximum: 255}
@@ -54,5 +55,9 @@ class Ticket < ActiveRecord::Base
 
   def set_uid
     StringRandom.random_regex('\u{3}-\d{3}-\u{3}-\d{3}-\u{3}')
+  end
+
+  def notify_customer
+    UserMailer.ticket(ticket, 'Someone has edited the ticket', 'updated', self).deliver if status_changed? or user_id_changed?
   end
 end

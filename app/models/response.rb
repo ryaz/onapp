@@ -4,7 +4,7 @@ class Response < ActiveRecord::Base
   validate :text, presence: true
 
   before_save :set_owner
-  after_create :notify_user
+  after_create :notify_customer
 
   private
 
@@ -12,7 +12,7 @@ class Response < ActiveRecord::Base
     self.user_id = ticket_id
   end
 
-  def notify_user
+  def notify_customer
     UserMailer.ticket(ticket, 'Someone has edited the ticket', 'updated', self).deliver
   end
 end
