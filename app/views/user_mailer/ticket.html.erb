@@ -8,6 +8,11 @@
     <p>
       Ticket is <%= @status %>.<br/>
     </p>
+    <% if @reply %>
+      <p>
+        You have reply in your ticket <%= @reply.text %>.<br/>
+      </p>
+    <% end %>
     <p>
       Ticket activity: <%= @url + customer_ticket_path(@ticket) %>.
     </p>

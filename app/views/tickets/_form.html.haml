@@ -1,4 +1,4 @@
-= form_for @ticket, :html => { :class => 'form-horizontal' } do |f|
+= nested_form_for @ticket, :html => { :class => 'form-horizontal' } do |f|
   .control-group
     = f.label :owner, :class => 'control-label'
     .controls
@@ -24,9 +24,10 @@
     .controls
       = f.text_field :body, :class => 'text_field'
   .control-group
-    = f.label :response, :class => 'control-label'
-    .controls
-      = f.text_field :response, :class => 'text_field'
+    = f.fields_for :responses do |r_f|
+      = r_f.text_field :text
+      = r_f.link_to_remove "Remove this response"
+    = f.link_to_add "Add a response", :responses
   .control-group
     = f.label :uid, :class => 'control-label'
     .controls

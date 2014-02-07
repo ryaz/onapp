@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207012003) do
+ActiveRecord::Schema.define(version: 20140207015431) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140207012003) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
 
+  create_table "responses", force: true do |t|
+    t.integer  "ticket_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tickets", force: true do |t|
     t.string   "status"
     t.string   "name"
@@ -39,7 +47,6 @@ ActiveRecord::Schema.define(version: 20140207012003) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "response"
     t.integer  "user_id"
   end
 

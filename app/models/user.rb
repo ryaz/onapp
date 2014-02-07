@@ -24,5 +24,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tickets
-
+  has_many :responses
 end

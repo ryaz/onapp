@@ -33,9 +33,11 @@ class Ticket < ActiveRecord::Base
   scope :closed, -> {where("status = ? OR status = ?", CANCELLED, COMPLETED)}
 
   belongs_to :user
+  has_many :responses, dependent: :destroy
+
+  accepts_nested_attributes_for :responses, allow_destroy: true, reject_if: proc { |attrs| attrs['text'].blank? }
 
   before_save :set_status, :set_uid, on: create
-  after_commit :notify_status, on: :update
 
   with_options presence: true do |this|
     this.validates :name, length: {maximum: 255}

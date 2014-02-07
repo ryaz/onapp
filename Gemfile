@@ -23,6 +23,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'nested_form'
 gem 'searchkick'
 gem 'public_activity'
 gem 'randexp'
