@@ -32,7 +32,10 @@ class Ticket < ActiveRecord::Base
   end
   scope :closed, -> {where("status = ? OR status = ?", CANCELLED, COMPLETED)}
 
+  belongs_to :user
+
   before_save :set_status, :set_uid, on: create
+  after_commit :notify_status, on: :update
 
   with_options presence: true do |this|
     this.validates :name, length: {maximum: 255}

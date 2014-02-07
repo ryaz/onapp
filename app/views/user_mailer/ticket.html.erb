@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey <%= @ticket.name %>!</h1>
+    <p>
+      Ticket is <%= @status %>.<br/>
+    </p>
+    <p>
+      Ticket activity: <%= @url + customer_ticket_path(@ticket) %>.
+    </p>
+  </body>
+</html>

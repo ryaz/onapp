@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activity:
+    ticket:
+      create: 'Ticket has been created'
+      update: 'Someone has edited the ticket'
+      destroy: 'Some user removed an ticket!'

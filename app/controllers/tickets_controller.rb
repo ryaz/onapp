@@ -57,6 +57,7 @@ class TicketsController < ApplicationController
   private
     def set_ticket
       @ticket = Ticket.find(params[:id])
+      @activities = PublicActivity::Activity.where(trackable: @ticket)
     end
 
     def ticket_params

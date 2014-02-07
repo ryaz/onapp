@@ -6,6 +6,7 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:status)
+      %th= model_class.human_attribute_name(:owner)
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:email)
       %th= model_class.human_attribute_name(:subject)
@@ -17,6 +18,7 @@
       %tr
         %td= link_to ticket.id, ticket_path(ticket)
         %td= ticket.status
+        %td= ticket.user.try(:email)
         %td= ticket.name
         %td= ticket.email
         %td= truncate ticket.subject, length: 10

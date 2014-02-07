@@ -7,10 +7,6 @@
   %br
   = @ticket.status
 %p
-  %strong= model_class.human_attribute_name(:owner) + ':'
-  %br
-  = @ticket.user.try(:email)
-%p
   %strong= model_class.human_attribute_name(:name) + ':'
   %br
   = @ticket.name
@@ -26,10 +22,6 @@
   %strong= model_class.human_attribute_name(:body) + ':'
   %br
   = @ticket.body
-%p
-  %strong= model_class.human_attribute_name(:uid) + ':'
-  %br
-  = @ticket.uid
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), tickets_path, :class => 'btn'
