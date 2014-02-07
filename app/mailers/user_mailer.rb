@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     @ticket = ticket
     @status = status
     @reply = reply
-    @url  = 'http://http://onapp.herokuapp.com/'
+    @url  = 'http://onapp.herokuapp.com/'
     mail(to: @ticket.email, subject: subject)
   end
 end
