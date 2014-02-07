@@ -58,6 +58,6 @@ class Ticket < ActiveRecord::Base
   end
 
   def notify_customer
-    UserMailer.ticket(ticket, 'Someone has edited the ticket', 'updated', self).deliver if status_changed? or user_id_changed?
+    UserMailer.ticket(self, 'Someone has edited the ticket', 'updated').deliver if status_changed? or user_id_changed?
   end
 end
