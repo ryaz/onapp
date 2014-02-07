@@ -53,6 +53,6 @@ class Ticket < ActiveRecord::Base
   end
 
   def set_uid
-    self.uid = /\w{3}-\d{3}-\w{3}-\d{3}-\w{3}/i.gen.upcase
+    StringRandom.random_regex('\u{3}-\d{3}-\u{3}-\d{3}-\u{3}')
   end
 end
